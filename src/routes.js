@@ -42,7 +42,7 @@ const routesAndMenuItems = {
       exact: true,
       redirect: true,
       to: `${appRoot}/dashboards/elearning`,
-      roles: [USER_ROLE.Admin, USER_ROLE.Editor] 
+      roles: [USER_ROLE.Admin, USER_ROLE.Trainer ,USER_ROLE.Learner] 
     },
     {
       path: `${appRoot}/dashboards`,
@@ -55,77 +55,193 @@ const routesAndMenuItems = {
         { path: '/elearning', label: 'menu.elearning', component: dashboards.elearning },
         { path: '/school', label: 'menu.school', component: dashboards.school },
       ],
-      roles: [USER_ROLE.Admin, USER_ROLE.Editor] 
+      roles: [USER_ROLE.Admin, USER_ROLE.Trainer , USER_ROLE.Learner] 
     },
     {
-      path: `${appRoot}/courses`,
-      label: 'menu.courses',
-      icon: 'online-class',
-      exact: true,
-      redirect: true,
-      to: `${appRoot}/courses/explore`,
-      subs: [
-        { path: '/explore', label: 'menu.explore', component: courses.explore },
-        { path: '/list', label: 'menu.list', component: courses.list },
-        { path: '/detail', label: 'menu.detail', component: courses.detail },
-      ],
-      roles: [USER_ROLE.Admin, USER_ROLE.Editor] 
-    },
-    {
-      path: `${appRoot}/quiz`,
-      label: 'menu.quiz',
-      icon: 'quiz',
-      exact: true,
-      redirect: true,
-      to: `${appRoot}/quiz/list`,
-      subs: [
-        { path: '/list', label: 'menu.list', component: quiz.list },
-        { path: '/detail', label: 'menu.detail', component: quiz.detail },
-        { path: '/result', label: 'menu.result', component: quiz.result },
-      ],
-      roles: [USER_ROLE.Admin, USER_ROLE.Editor] 
-    },
-    {
-      path: `${appRoot}/paths`,
-      label: 'menu.paths',
-      icon: 'destination',
-      exact: true,
-      redirect: true,
-      to: `${appRoot}/paths/list`,
-      subs: [
-        { path: '/list', label: 'menu.list', component: paths.list },
-        { path: '/detail', label: 'menu.detail', component: paths.detail },
-      ],
-      roles: [USER_ROLE.Admin, USER_ROLE.Editor] 
-    },
-    {
-      path: `${appRoot}/instructor`,
-      label: 'menu.instructor',
-      icon: 'lecture',
-      exact: true,
-      redirect: true,
-      to: `${appRoot}/instructor/list`,
-      subs: [
-        { path: '/list', label: 'menu.list', component: instructor.list },
-        { path: '/detail', label: 'menu.detail', component: instructor.detail },
-      ],
-      roles: [USER_ROLE.Admin] 
-    },
-    {
-      path: `${appRoot}/misc`,
-      label: 'menu.misc',
-      icon: 'layout-5',
-      exact: true,
-      redirect: true,
-      to: `${appRoot}/misc/player`,
-      subs: [
-        { path: '/player', label: 'menu.player', component: misc.player },
-        { path: '/material', label: 'menu.material', component: misc.material },
-        { path: '/syllabus', label: 'menu.syllabus', component: misc.syllabus },
-      ],
-      roles: [USER_ROLE.Editor] 
-    },
+    path: `${appRoot}/courses`,
+    label: 'menu.courses',
+    icon: 'online-class',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/courses/explore`,
+    subs: [
+      { path: '/explore', label: 'menu.explore', component: courses.explore },
+      { path: '/list', label: 'menu.list', component: courses.list },
+      { path: '/detail', label: 'menu.detail', component: courses.detail },
+      { path: '/create', label: 'menu.create', component: courses.explore },
+      { path: '/edit', label: 'menu.edit', component: courses.explore },
+    ],
+    roles: [USER_ROLE.Admin]
+  },
+  {
+    path: `${appRoot}/quiz`,
+    label: 'menu.users',
+    icon: 'user',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/quiz/list`,
+    subs: [
+      { path: '/list', label: 'menu.manage', component: quiz.list  },
+      { path: '/detail', label: 'menu.add', component: quiz.detail  },
+      { path: '/detail', label: 'menu.edit', component: quiz.result  },
+    ],
+    roles: [USER_ROLE.Admin]
+  },
+  {
+    path: `${appRoot}/quiz`,
+    label: 'menu.logistics',
+    icon: 'compass',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/quiz/list`,
+    subs: [
+      { path: '/list', label: 'menu.manage', component: quiz.list },
+      { path: '/detail', label: 'menu.add', component: quiz.detail },
+      { path: '/result', label: 'menu.edit', component: quiz.result },
+    ],
+    roles: [USER_ROLE.Admin]
+  },
+  {
+    path: `${appRoot}/reports`,
+    label: 'menu.reports',
+    icon: 'chart-3',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/quiz/list`,
+    subs: [
+      { path: '/list', label: 'menu.manage', component: quiz.list },
+      { path: '/detail', label: 'menu.add', component: quiz.detail },
+      { path: '/result', label: 'menu.edit', component: quiz.result },
+    ],
+    roles: [USER_ROLE.Admin]
+  },
+  {
+    path: `${appRoot}/invoices`,
+    label: 'menu.invoices',
+    icon: 'invoice',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/quiz/list`,
+    subs: [
+      { path: '/list', label: 'menu.manage', component: quiz.list },
+      { path: '/detail', label: 'menu.add', component: quiz.detail },
+      { path: '/result', label: 'menu.edit', component: quiz.result },
+    ],
+    roles: [USER_ROLE.Admin]
+  },
+  {
+    path: `${appRoot}/social-media`,
+    label: 'menu.socialMedia',
+    icon: 'facebook',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/quiz/list`,
+    subs: [
+      { path: '/list', label: 'menu.manage', component: quiz.list },
+      { path: '/detail', label: 'menu.add', component: quiz.detail },
+      { path: '/result', label: 'menu.edit', component: quiz.result },
+    ],
+    roles: [USER_ROLE.Admin]
+  },
+{
+    path: `${appRoot}/training-sessions`,
+    label: 'menu.trainingSessions',
+    icon: 'form',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/quiz/list`,
+    subs: [
+      { path: '/list', label: 'menu.manage', component: quiz.list },
+      { path: '/detail', label: 'menu.add', component: quiz.detail },
+      { path: '/result', label: 'menu.edit', component: quiz.result },
+    ],
+    roles: [USER_ROLE.Trainer]
+  },
+  {
+    path: `${appRoot}/fees`,
+    label: 'menu.fees',
+    icon: 'fees',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/quiz/list`,
+    subs: [
+      { path: '/list', label: 'menu.manage', component: quiz.list },
+      { path: '/detail', label: 'menu.add', component: quiz.detail },
+      { path: '/result', label: 'menu.edit', component: quiz.result },
+    ],
+    roles: [USER_ROLE.Trainer]
+  },
+  {
+    path: `${appRoot}/certificates`,
+    label: 'menu.certificates',
+    icon: 'graduation',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/quiz/list`,
+    subs: [
+      { path: '/list', label: 'menu.manage', component: quiz.list },
+      { path: '/detail', label: 'menu.add', component: quiz.detail },
+      { path: '/result', label: 'menu.edit', component: quiz.result },
+    ],
+    roles: [USER_ROLE.Trainer]
+  },
+{
+    path: `${appRoot}/training-programs`,
+    label: 'menu.trainingPrograms',
+    icon: 'online-class',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/quiz/list`,
+    subs: [
+      { path: '/list', label: 'menu.manage', component: quiz.list },
+      { path: '/detail', label: 'menu.add', component: quiz.detail },
+      { path: '/result', label: 'menu.edit', component: quiz.result },
+    ],
+    roles: [USER_ROLE.Learner]
+  },
+  {
+    path: `${appRoot}/certificates`,
+    label: 'menu.certificates',
+    icon: 'graduation',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/quiz/list`,
+    subs: [
+      { path: '/list', label: 'menu.manage', component: quiz.list },
+      { path: '/detail', label: 'menu.add', component: quiz.detail },
+      { path: '/result', label: 'menu.edit', component: quiz.result },
+    ],
+    roles: [USER_ROLE.Learner]
+  },
+  {
+    path: `${appRoot}/invoices`,
+    label: 'menu.invoices',
+    icon: 'invoices',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/quiz/list`,
+    subs: [
+      { path: '/list', label: 'menu.manage', component: quiz.list },
+      { path: '/detail', label: 'menu.add', component: quiz.detail },
+      { path: '/result', label: 'menu.edit', component: quiz.result },
+    ],
+    roles: [USER_ROLE.Learner]
+  }
   ],
   sidebarItems: [],
 };
+
+
+const adminRoutes = [
+  
+];
+
+const trainerRoutes = [
+  
+];
+
+const learnerRoutes = [
+  
+];
+
 export default routesAndMenuItems;

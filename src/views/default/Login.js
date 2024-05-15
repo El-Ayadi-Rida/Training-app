@@ -18,7 +18,7 @@ const Login = () => {
   const initialValues = { email: '', password: '' };
   const onSubmit = (values) =>{
     console.log('submit form', values);
-    localStorage.setItem('user',JSON.stringify({...values , role: "editor"}));
+    localStorage.setItem('user',JSON.stringify({...values , role: "admin"}));
   }
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
