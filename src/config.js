@@ -28,17 +28,19 @@ export const DEFAULT_SETTINGS = {
   MENU_BEHAVIOUR: MENU_BEHAVIOUR.Unpinned,
   LAYOUT: LAYOUT.Boxed,
   RADIUS: RADIUS.Rounded,
-  COLOR: THEME_COLOR.LightPurple,
+  COLOR: THEME_COLOR.LightGreen,
   NAV_COLOR: NAV_COLOR.Default,
   USE_SIDEBAR: false,
 };
+
 
 export const DEFAULT_USER = {
   id: 1,
   name: 'Lisa Jackson',
   thumb: '/img/profile/profile-9.webp',
-  role: USER_ROLE.Admin,
+  role: JSON.parse(localStorage.getItem("user")).role,
   email: 'lisajackson@gmail.com',
 };
+
 
 export const REDUX_PERSIST_KEY = 'elearning-portal';

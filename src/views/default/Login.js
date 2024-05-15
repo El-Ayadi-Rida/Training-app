@@ -16,7 +16,10 @@ const Login = () => {
     password: Yup.string().min(6, 'Must be at least 6 chars!').required('Password is required'),
   });
   const initialValues = { email: '', password: '' };
-  const onSubmit = (values) => console.log('submit form', values);
+  const onSubmit = (values) =>{
+    console.log('submit form', values);
+    localStorage.setItem('user',JSON.stringify({...values , role: "editor"}));
+  }
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
   const { handleSubmit, handleChange, values, touched, errors } = formik;

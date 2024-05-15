@@ -2,6 +2,7 @@
 import { lazy } from 'react';
 // import { USER_ROLE } from 'constants.js';
 import { DEFAULT_PATHS } from 'config.js';
+import { USER_ROLE } from 'constants.js';
 
 const dashboards = {
   elearning: lazy(() => import('views/dashboards/ElearningDashboard')),
