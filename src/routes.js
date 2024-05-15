@@ -41,6 +41,7 @@ const routesAndMenuItems = {
       exact: true,
       redirect: true,
       to: `${appRoot}/dashboards/elearning`,
+      roles: [USER_ROLE.Admin, USER_ROLE.Editor] 
     },
     {
       path: `${appRoot}/dashboards`,
@@ -53,6 +54,7 @@ const routesAndMenuItems = {
         { path: '/elearning', label: 'menu.elearning', component: dashboards.elearning },
         { path: '/school', label: 'menu.school', component: dashboards.school },
       ],
+      roles: [USER_ROLE.Admin, USER_ROLE.Editor] 
     },
     {
       path: `${appRoot}/courses`,
@@ -66,6 +68,7 @@ const routesAndMenuItems = {
         { path: '/list', label: 'menu.list', component: courses.list },
         { path: '/detail', label: 'menu.detail', component: courses.detail },
       ],
+      roles: [USER_ROLE.Admin, USER_ROLE.Editor] 
     },
     {
       path: `${appRoot}/quiz`,
@@ -79,6 +82,7 @@ const routesAndMenuItems = {
         { path: '/detail', label: 'menu.detail', component: quiz.detail },
         { path: '/result', label: 'menu.result', component: quiz.result },
       ],
+      roles: [USER_ROLE.Admin, USER_ROLE.Editor] 
     },
     {
       path: `${appRoot}/paths`,
@@ -91,6 +95,7 @@ const routesAndMenuItems = {
         { path: '/list', label: 'menu.list', component: paths.list },
         { path: '/detail', label: 'menu.detail', component: paths.detail },
       ],
+      roles: [USER_ROLE.Admin, USER_ROLE.Editor] 
     },
     {
       path: `${appRoot}/instructor`,
@@ -103,6 +108,7 @@ const routesAndMenuItems = {
         { path: '/list', label: 'menu.list', component: instructor.list },
         { path: '/detail', label: 'menu.detail', component: instructor.detail },
       ],
+      roles: [USER_ROLE.Admin] 
     },
     {
       path: `${appRoot}/misc`,
@@ -116,6 +122,7 @@ const routesAndMenuItems = {
         { path: '/material', label: 'menu.material', component: misc.material },
         { path: '/syllabus', label: 'menu.syllabus', component: misc.syllabus },
       ],
+      roles: [USER_ROLE.Editor] 
     },
   ],
   sidebarItems: [],
