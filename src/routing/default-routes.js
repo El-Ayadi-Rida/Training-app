@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { DEFAULT_PATHS } from 'config.js';
+import { useSelector } from 'react-redux';
 
 const NotFound = lazy(() => import('views/default/NotFound'));
 const Login = lazy(() => import('views/default/Login'));
@@ -10,6 +11,7 @@ const Unauthorized = lazy(() => import('views/default/Unauthorized'));
 const InvalidAccess = lazy(() => import('views/default/InvalidAccess'));
 const App = lazy(() => import('App.js'));
 const Home = lazy(() => import('views/default/Home'));
+
 
 /*
 { path: "/path", exact: true, component: ViewHome },

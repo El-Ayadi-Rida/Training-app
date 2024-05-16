@@ -34,13 +34,13 @@ export const DEFAULT_SETTINGS = {
 };
 
 
-export const DEFAULT_USER = {
-  id: 1,
-  name: 'Lisa Jackson',
-  thumb: '/img/profile/profile-9.webp',
-  role: JSON.parse(localStorage.getItem("user"))?.role,
-  email: 'lisajackson@gmail.com',
-};
+// export const DEFAULT_USER = {
+//   id: 1,
+//   name: 'Lisa Jackson',
+//   thumb: '/img/profile/profile-9.webp',
+//   role: "admin",
+//   email: 'lisajackson@gmail.com',
+// };
 
 
 export const REDUX_PERSIST_KEY = 'elearning-portal';

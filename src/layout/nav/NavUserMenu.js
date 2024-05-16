@@ -10,7 +10,7 @@ import { useHistory } from 'react-router-dom';
 const NavUserMenuContent = () => {
   const history = useHistory();
   const handleLogout = async () => {
-    await localStorage.removeItem('user');
+    await localStorage.removeItem('jwt-token');
     history.push("/login");
   };
   return (
@@ -94,9 +94,9 @@ const NavUserMenuContent = () => {
               </a>
             </li>
             <li>
-              <button type="button" onClick={handleLogout}>
+              <div type="button" onClick={handleLogout}>
                 <CsLineIcons icon="logout" className="me-2" size="17" /> <span className="align-middle">Logout</span>
-              </button>
+              </div>
             </li>
           </ul>
         </Col>

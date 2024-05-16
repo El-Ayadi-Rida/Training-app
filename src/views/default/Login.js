@@ -1,28 +1,45 @@
-import React from 'react';
-import { NavLink , useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import LayoutFullpage from 'layout/LayoutFullpage';
 import CsLineIcons from 'cs-line-icons/CsLineIcons';
 import HtmlHead from 'components/html-head/HtmlHead';
+// import { jwtDecode } from 'jwt-decode'
+import { useDispatch, useSelector } from 'react-redux';
+// import { setCurrentUser } from 'auth/authSlice';
 
 const Login = () => {
-    const history = useHistory();
+  const history = useHistory();
+  const dispatch = useDispatch();
   const title = 'Login';
   const description = 'Login Page';
-
+  // const { currentUser, isLogin } = useSelector((state) => state.auth);
+  // useEffect(() => {
+    
+  // }, []);
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required('Email is required'),
     password: Yup.string().min(6, 'Must be at least 6 chars!').required('Password is required'),
   });
   const initialValues = { email: '', password: '' };
-  const onSubmit = (values) =>{
+  const onSubmit = async (values) => {
     console.log('submit form', values);
-    localStorage.setItem('user',JSON.stringify({...values , role: "admin"}));
-    history.push("/app");
-  }
-
+    const response = await fetch('https://localhost:7202/api/User/Login', {
+      method: 'post',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(values),
+    });
+    const resJson = await response?.json();
+    const { token } = resJson;
+    await localStorage.setItem('jwt-token', JSON.stringify(token));
+    history.push('/app');
+    window.location.reload();
+  };
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
   const { handleSubmit, handleChange, values, touched, errors } = formik;
 
