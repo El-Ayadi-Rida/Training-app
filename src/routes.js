@@ -87,11 +87,18 @@ const learnerRoutes = [
 ];
 
 const sharedRoutes = [
+  // {
+  //   path: DEFAULT_PATHS.APP,
+  //   exact: true,
+  //   redirect: true,
+  //   to: `${appRoot}/dashboards/elearning`,
+  // },
   {
-    path: DEFAULT_PATHS.APP,
+    path: '/app',
     exact: true,
     redirect: true,
     to: `${appRoot}/dashboards/elearning`,
+    roles: [USER_ROLE.Admin, USER_ROLE.Trainer ,USER_ROLE.Learner] 
   },
   {
     path: `${appRoot}/dashboards`,
