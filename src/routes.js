@@ -34,11 +34,11 @@ const misc = {
 };
 
 const appRoot = DEFAULT_PATHS.APP.endsWith('/') ? DEFAULT_PATHS.APP.slice(1, DEFAULT_PATHS.APP.length) : DEFAULT_PATHS.APP;
-
+// const appRoot = DEFAULT_PATHS.APP;
 const routesAndMenuItems = {
   mainMenuItems: [
     {
-      path: DEFAULT_PATHS.APP,
+      path: '/app',
       exact: true,
       redirect: true,
       to: `${appRoot}/dashboards/elearning`,

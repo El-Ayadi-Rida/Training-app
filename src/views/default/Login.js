@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink , useHistory } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -8,6 +8,7 @@ import CsLineIcons from 'cs-line-icons/CsLineIcons';
 import HtmlHead from 'components/html-head/HtmlHead';
 
 const Login = () => {
+    const history = useHistory();
   const title = 'Login';
   const description = 'Login Page';
 
@@ -19,6 +20,7 @@ const Login = () => {
   const onSubmit = (values) =>{
     console.log('submit form', values);
     localStorage.setItem('user',JSON.stringify({...values , role: "admin"}));
+    history.push("/app");
   }
 
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
