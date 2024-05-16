@@ -2,12 +2,10 @@
 import React, { useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from 'reportWebVitals.js';
-
 // import redux requirements
 import { Provider } from 'react-redux';
 import { PersistGate } from 'reduxjs-toolkit-persist/integration/react';
 import { store, persistedStore } from 'store.js';
-
 // import html head tags requirements
 import { Helmet } from 'react-helmet';
 import { REACT_HELMET_PROPS } from 'config.js';
