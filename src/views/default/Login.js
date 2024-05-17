@@ -8,6 +8,8 @@ import CsLineIcons from 'cs-line-icons/CsLineIcons';
 import HtmlHead from 'components/html-head/HtmlHead';
 // import { jwtDecode } from 'jwt-decode'
 import { useDispatch, useSelector } from 'react-redux';
+import { setTokens } from 'auth/authSlice';
+import axios from 'axios';
 // import { setCurrentUser } from 'auth/authSlice';
 
 const Login = () => {
@@ -34,11 +36,31 @@ const Login = () => {
       },
       body: JSON.stringify(values),
     });
+    
     const resJson = await response?.json();
+    
     const { token } = resJson;
     await localStorage.setItem('jwt-token', JSON.stringify(token));
     history.push('/app');
     window.location.reload();
+  };
+  const onSubmitT = async (values) => {
+    try {
+      const response = await axios.post('https://localhost:7202/api/User/Login', values);
+      const { accessToken, refreshToken } = response.data;
+
+      // Store { accessToken, refreshToken } in localStorage; 
+
+      localStorage.setItem('token', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+
+      // Dispatch action to save tokens
+      dispatch(setTokens({ accessToken, refreshToken }));
+  
+      console.log('Login successful', response.data);
+    } catch (error) {
+      console.error('Login error', error.response);
+    }
   };
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
   const { handleSubmit, handleChange, values, touched, errors } = formik;
