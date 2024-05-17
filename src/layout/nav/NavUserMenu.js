@@ -120,7 +120,7 @@ const NavUserMenuDropdownToggle = React.memo(
       }}
     >
       <img className="profile" alt={user.name} src={user.thumb} />
-      <div className="name">{user.name}</div>
+      <div className="name">{user.role}</div>
     </a>
   ))
 );

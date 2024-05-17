@@ -8,8 +8,9 @@ import CsLineIcons from 'cs-line-icons/CsLineIcons';
 import HtmlHead from 'components/html-head/HtmlHead';
 // import { jwtDecode } from 'jwt-decode'
 import { useDispatch, useSelector } from 'react-redux';
-import { setTokens } from 'auth/authSlice';
+import { setCurrentUser, setTokens } from 'auth/authSlice';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 // import { setCurrentUser } from 'auth/authSlice';
 
 const Login = () => {
@@ -25,7 +26,19 @@ const Login = () => {
     email: Yup.string().email().required('Email is required'),
     password: Yup.string().min(6, 'Must be at least 6 chars!').required('Password is required'),
   });
+  const getuserFromToken = () => {
+    const token = localStorage.getItem('token'); // or sessionStorage, depending on where you store your token
+    if (token) {
+      const decoded = jwtDecode(token);
+      const user = {...decoded , role:"admin"}
+      console.log(user);
+      return user; // Make sure the payload contains the 'role' you set on the server side
+    }
+    return {};
+  };
   const initialValues = { email: '', password: '' };
+  const { currentUser, isLogin } = useSelector((state) => state.auth);
+  console.log(currentUser);
   // const onSubmit = async (values) => {
   //   console.log('submit form', values);
   //   const response = await fetch('https://localhost:7202/api/User/Login', {
@@ -46,7 +59,8 @@ const Login = () => {
   // };
   const onSubmit = async (values) => {
     try {
-      const response = await axios.post('/api/login', values);
+      // const response = await axios.post('http://localhost:8080/api/auth/signin', values);
+      const response = await axios.post('http://localhost:8080/api/auth/signin', {usernameOrEmail:values.email , password:values.password});
       const { accessToken, refreshToken } = response.data;
 
       // Store { accessToken, refreshToken } in localStorage; 
@@ -56,8 +70,10 @@ const Login = () => {
 
       // Dispatch action to save tokens
       dispatch(setTokens({ accessToken, refreshToken }));
+      dispatch(setCurrentUser(getuserFromToken()));
   
       console.log('Login successful', response.data);
+      history.push('/app');
     } catch (error) {
       console.error('Login error', error.response);
     }
