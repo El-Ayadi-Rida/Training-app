@@ -26,27 +26,27 @@ const Login = () => {
     password: Yup.string().min(6, 'Must be at least 6 chars!').required('Password is required'),
   });
   const initialValues = { email: '', password: '' };
+  // const onSubmit = async (values) => {
+  //   console.log('submit form', values);
+  //   const response = await fetch('https://localhost:7202/api/User/Login', {
+  //     method: 'post',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(values),
+  //   });
+    
+  //   const resJson = await response?.json();
+    
+  //   const { token } = resJson;
+  //   await localStorage.setItem('jwt-token', JSON.stringify(token));
+  //   history.push('/app');
+  //   window.location.reload();
+  // };
   const onSubmit = async (values) => {
-    console.log('submit form', values);
-    const response = await fetch('https://localhost:7202/api/User/Login', {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    });
-    
-    const resJson = await response?.json();
-    
-    const { token } = resJson;
-    await localStorage.setItem('jwt-token', JSON.stringify(token));
-    history.push('/app');
-    window.location.reload();
-  };
-  const onSubmitT = async (values) => {
     try {
-      const response = await axios.post('https://localhost:7202/api/User/Login', values);
+      const response = await axios.post('/api/login', values);
       const { accessToken, refreshToken } = response.data;
 
       // Store { accessToken, refreshToken } in localStorage; 
