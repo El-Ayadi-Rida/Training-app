@@ -15,7 +15,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^13.1.9",
     "autosuggest-trie": "^2.1.1",
-    "axios": "^1.6.8",
+    "axios": "^0.21.1",
     "axios-mock-adapter": "^1.19.0",
     "bootstrap": "^5.3.3",
     "chart.js": "^3.5.1",

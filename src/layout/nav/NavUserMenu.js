@@ -6,6 +6,7 @@ import { MENU_PLACEMENT } from 'constants.js';
 import CsLineIcons from 'cs-line-icons/CsLineIcons';
 import { layoutShowingNavMenu } from 'layout/layoutSlice';
 import { useHistory } from 'react-router-dom';
+import api from 'api';
 
 const NavUserMenuContent = () => {
   const history = useHistory();
@@ -13,6 +14,18 @@ const NavUserMenuContent = () => {
     await localStorage.removeItem('jwt-token');
     history.push("/login");
   };
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await api.get('/ticket/');
+        console.log(response);
+      } catch (error) {
+        // Handle error or redirect to login
+      }
+    };
+
+    fetchProfile();
+  }, []);
   return (
     <div>
       <Row className="mb-3 ms-0 me-0">
