@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import * as Yup from 'yup';
@@ -18,6 +18,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const title = 'Login';
   const description = 'Login Page';
+  const [authTokens, setAuthTokens] = useState({});
+
   // const { currentUser, isLogin } = useSelector((state) => state.auth);
   // useEffect(() => {
     
@@ -60,8 +62,10 @@ const Login = () => {
   const onSubmit = async (values) => {
     try {
       // const response = await axios.post('http://localhost:8080/api/auth/signin', values);
-      const response = await axios.post('http://localhost:8080/api/auth/signin', {usernameOrEmail:values.email , password:values.password});
-      const { accessToken, refreshToken } = response.data;
+      const response = await axios.post('https://api.escuelajs.co/api/v1/auth/login', values);
+      console.log(response.data.access_token);
+      const accessToken = response.data.access_token;
+      const refreshToken = response.data.refresh_token;
 
       // Store { accessToken, refreshToken } in localStorage; 
 

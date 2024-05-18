@@ -15,7 +15,7 @@ import Loading from 'components/loading/Loading';
 const App = () => {
   const { currentUser, isLogin } = useSelector((state) => state.auth);
   console.log(currentUser, isLogin);
-
+  
 
   const routes = useMemo(() => getRoutes({ data: routesAndMenuItems, isLogin, userRole: currentUser.role }), [isLogin, currentUser]);
   if (routes) {

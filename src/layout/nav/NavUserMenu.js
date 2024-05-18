@@ -17,7 +17,7 @@ const NavUserMenuContent = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await api.get('/ticket/');
+        const response = await api.get('/auth/profile');
         console.log(response);
       } catch (error) {
         // Handle error or redirect to login
