@@ -30,18 +30,20 @@ api.interceptors.response.use(
   
         try {
           const refreshToken = localStorage.getItem('refreshToken');
-          const response = await axios.post('https://api.escuelajs.co/api/v1/auth/refresh-token', { refreshToken });
-          const { token } = response.data;
-          const newAccessToken = response.data.access_token
-          const newRefreshToken = response.data.refresh_token;
-  
-          localStorage.setItem('token', newAccessToken);
-          if (newRefreshToken) {
-            localStorage.setItem('refreshToken', newRefreshToken);
+          if(refreshToken){
+            const response = await axios.post('https://api.escuelajs.co/api/v1/auth/refresh-token', { refreshToken });
+            const { token } = response.data;
+            const newAccessToken = response.data.access_token
+            const newRefreshToken = response.data.refresh_token;
+    
+            localStorage.setItem('token', newAccessToken);
+            if (newRefreshToken) {
+              localStorage.setItem('refreshToken', newRefreshToken);
+            }
+            // Retry the original request with the new token
+            originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+            return axios(originalRequest);
           }
-          // Retry the original request with the new token
-          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-          return axios(originalRequest);
         } catch (refreshError) {
           // Handle refresh token error or redirect to login
         }

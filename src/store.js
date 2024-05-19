@@ -20,7 +20,7 @@ import { REDUX_PERSIST_KEY } from 'config.js';
 const persistConfig = {
   key: REDUX_PERSIST_KEY,
   storage,
-  whitelist: ['menu', 'settings', 'lang','auth'],
+  whitelist: ['menu', 'settings', 'lang'],
 };
 
 const persistedReducer = persistReducer(

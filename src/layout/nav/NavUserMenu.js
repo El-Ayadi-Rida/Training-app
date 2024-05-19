@@ -7,7 +7,7 @@ import CsLineIcons from 'cs-line-icons/CsLineIcons';
 import { layoutShowingNavMenu } from 'layout/layoutSlice';
 import { useHistory } from 'react-router-dom';
 import api from 'api';
-import { logout, setCurrentUser } from 'auth/authSlice';
+import { logout } from 'auth/authSlice';
 
 const NavUserMenuContent = () => {
   const dispatch = useDispatch();
