@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { Col, Dropdown, Row } from 'react-bootstrap';
@@ -7,25 +7,15 @@ import CsLineIcons from 'cs-line-icons/CsLineIcons';
 import { layoutShowingNavMenu } from 'layout/layoutSlice';
 import { useHistory } from 'react-router-dom';
 import api from 'api';
+import { logout, setCurrentUser } from 'auth/authSlice';
 
 const NavUserMenuContent = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const handleLogout = async () => {
-    await localStorage.removeItem('jwt-token');
-    history.push("/login");
+    await dispatch(logout());
+    history.push("/");
   };
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await api.get('/auth/profile');
-        console.log(response);
-      } catch (error) {
-        // Handle error or redirect to login
-      }
-    };
-
-    fetchProfile();
-  }, []);
   return (
     <div>
       <Row className="mb-3 ms-0 me-0">
@@ -132,8 +122,8 @@ const NavUserMenuDropdownToggle = React.memo(
         onClick(e);
       }}
     >
-      <img className="profile" alt={user.name} src={user.thumb} />
-      <div className="name">{user.role}</div>
+      <img className="profile" alt={user.name} src={user.avatar} />
+      <div className="name">{user.name}</div>
     </a>
   ))
 );
@@ -165,6 +155,7 @@ const NavUserMenu = () => {
   const { isLogin, currentUser } = useSelector((state) => state.auth);
   const { color } = useSelector((state) => state.settings);
   const { showingNavMenu } = useSelector((state) => state.layout);
+  const [loggedUser, setLoggedUser] = useState({});
 
   const onToggle = (status, event) => {
     if (event && event.stopPropagation) event.stopPropagation();
@@ -175,14 +166,28 @@ const NavUserMenu = () => {
   useEffect(() => {
     dispatch(layoutShowingNavMenu(''));
     // eslint-disable-next-line
+    const fetchProfile = async () => {
+      try {
+        const response = await api.get('/auth/profile');
+        console.log(response.data);
+        const {name , avatar} = response.data;
+        setLoggedUser(name , avatar);
+        console.log(loggedUser);
+      } catch (error) {
+        // Handle error or redirect to login
+      }
+    };
+
+    fetchProfile();
   }, [attrMenuAnimate, behaviourHtmlData, attrMobile, color]);
+
 
   if (!isLogin) {
     return <></>;
   }
   return (
     <Dropdown as="div" bsPrefix="user-container d-flex" onToggle={onToggle} show={showingNavMenu === MENU_NAME} drop="down">
-      <Dropdown.Toggle as={NavUserMenuDropdownToggle} user={currentUser} />
+      <Dropdown.Toggle as={NavUserMenuDropdownToggle} user={loggedUser} />
       <Dropdown.Menu
         as={NavUserMenuDropdownMenu}
         className="dropdown-menu dropdown-menu-end user-menu wide"

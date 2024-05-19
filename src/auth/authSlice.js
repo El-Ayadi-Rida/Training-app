@@ -1,11 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { jwtDecode } from 'jwt-decode';
 
+const getuserFromToken = () => {
+  const token = localStorage.getItem('token'); // or sessionStorage, depending on where you store your token
+  if (token) {
+    const decoded = jwtDecode(token);
+    const user = {...decoded , role:"admin"}
+    console.log(user);
+    return user; // Make sure the payload contains the 'role' you set on the server side
+  }
+  return null;
+};
 
 const initialState = {
+  isLogin: !!getuserFromToken(),
   accessToken: localStorage.getItem('token')|| null,
   refreshToken: localStorage.getItem('refreshToken')|| null,
-  currentUser: {},
-  isLogin: false,
+  currentUser: getuserFromToken(),
 };
 
 const authSlice = createSlice({
@@ -25,6 +36,8 @@ const authSlice = createSlice({
       state.refreshToken = null;
       state.currentUser = {};
       state.isLogin = false;
+      localStorage.removeItem('token');
+      localStorage.removeItem('refreshToken');
     },
   },
 });
