@@ -171,7 +171,7 @@ const NavUserMenu = () => {
         const response = await api.get('/auth/profile');
         console.log(response.data);
         const {name , avatar} = response.data;
-        setLoggedUser(name , avatar);
+        setLoggedUser({name , avatar});
         console.log(loggedUser);
       } catch (error) {
         // Handle error or redirect to login

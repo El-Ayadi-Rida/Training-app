@@ -10,6 +10,7 @@ import settingsReducer from 'settings/settingsSlice';
 import layoutReducer from 'layout/layoutSlice';
 import langReducer from 'lang/langSlice';
 import authReducer from 'auth/authSlice';
+import programReducer from 'features/program/programSlice';
 import menuReducer from 'layout/nav/main-menu/menuSlice';
 import notificationReducer from 'layout/nav/notifications/notificationSlice';
 import scrollspyReducer from 'components/scrollspy/scrollspySlice';
@@ -33,6 +34,7 @@ const persistedReducer = persistReducer(
     menu: menuReducer,
     notification: notificationReducer,
     scrollspy: scrollspyReducer,
+    program: programReducer,
   })
 );
 const store = configureStore({

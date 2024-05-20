@@ -13,6 +13,10 @@ const courses = {
   list: lazy(() => import('views/courses/CoursesList')),
   detail: lazy(() => import('views/courses/CoursesDetail')),
 };
+const programs = {
+  explore: lazy(() => import('views/products/list/ProductsList')),
+  detail: lazy(() => import('views/products/detail/ProductsDetail')),
+};
 const quiz = {
   list: lazy(() => import('views/quiz/QuizList')),
   detail: lazy(() => import('views/quiz/QuizDetail')),
@@ -44,9 +48,8 @@ const adminRoutes = [
     redirect: true,
     to: `${appRoot}/courses/explore`,
     subs: [
-      { path: '/explore', label: 'menu.explore', component: courses.explore },
-      { path: '/list', label: 'menu.list', component: courses.list },
-      { path: '/detail', label: 'menu.detail', component: courses.detail },
+      { path: '/explore', label: 'menu.explore', component: programs.explore },
+      { path: '/detail/:programId', label: '', component: programs.detail },
     ],
     roles: [USER_ROLE.Admin]
   }
@@ -82,7 +85,7 @@ const learnerRoutes = [
       { path: '/material', label: 'menu.material', component: misc.material },
       { path: '/syllabus', label: 'menu.syllabus', component: misc.syllabus },
     ],
-    roles: [USER_ROLE.Learner]
+    roles: [USER_ROLE.Admin]
   }
 ];
 
@@ -122,7 +125,9 @@ const routesAndMenuItems = {
     ...trainerRoutes,
     ...learnerRoutes,
   ],
-  sidebarItems: [],
+  sidebarItems: [
+
+  ],
 };
 
 
