@@ -47,7 +47,7 @@ const ElearningDashboard = () => {
                 <Card.Body className="py-0 h-100 d-flex align-items-center">
                   <div className="w-100">
                     <div className="d-flex flex-row justify-content-between mb-2">
-                      <NavLink to="/courses/detail">Introduction to Baking Cakes</NavLink>
+                      <NavLink to="/courses/detail">Introduction to Java spring boot</NavLink>
                       <div className="text-muted">67%</div>
                     </div>
                     <ProgressBar className="progress-md mb-2" now={67} />

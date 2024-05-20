@@ -40,7 +40,7 @@ const CoursesExplore = () => {
             <Card.Img src="/img/product/small/product-1.webp" className="card-img-top sh-22" alt="card image" />
             <Card.Body>
               <h5 className="heading mb-0">
-                <NavLink to="/courses/detail" className="body-link stretched-link">
+                <NavLink to="/app/courses/detail" className="body-link stretched-link">
                   Fruit Decorations
                 </NavLink>
               </h5>
@@ -69,7 +69,7 @@ const CoursesExplore = () => {
             <Card.Img src="/img/product/small/product-2.webp" className="card-img-top sh-22" alt="card image" />
             <Card.Body>
               <h5 className="heading mb-0">
-                <NavLink to="/courses/detail" className="body-link stretched-link">
+                <NavLink to="/app/courses/detail" className="body-link stretched-link">
                   Recipes for Sweet and Healty Treats
                 </NavLink>
               </h5>
@@ -98,7 +98,7 @@ const CoursesExplore = () => {
             <Card.Img src="/img/product/small/product-3.webp" className="card-img-top sh-22" alt="card image" />
             <Card.Body>
               <h5 className="heading mb-0">
-                <NavLink to="/courses/detail" className="body-link stretched-link">
+                <NavLink to="/app/courses/detail" className="body-link stretched-link">
                   Better Ways to Mix Dough for the Molds
                 </NavLink>
               </h5>
@@ -127,7 +127,7 @@ const CoursesExplore = () => {
             <Card.Img src="/img/product/small/product-4.webp" className="card-img-top sh-22" alt="card image" />
             <Card.Body>
               <h5 className="heading mb-0">
-                <NavLink to="/courses/detail" className="body-link stretched-link">
+                <NavLink to="/app/courses/detail" className="body-link stretched-link">
                   Carrot Cake Gingerbread
                 </NavLink>
               </h5>
@@ -167,7 +167,7 @@ const CoursesExplore = () => {
             <Card.Img src="/img/product/small/product-5.webp" className="card-img-top sh-22" alt="card image" />
             <Card.Body>
               <h5 className="heading mb-0">
-                <NavLink to="/courses/detail" className="body-link stretched-link">
+                <NavLink to="/app/courses/detail" className="body-link stretched-link">
                   Facts About Sugar Products
                 </NavLink>
               </h5>
@@ -196,7 +196,7 @@ const CoursesExplore = () => {
             <Card.Img src="/img/product/small/product-6.webp" className="card-img-top sh-22" alt="card image" />
             <Card.Body>
               <h5 className="heading mb-0">
-                <NavLink to="/courses/detail" className="body-link stretched-link">
+                <NavLink to="/app/courses/detail" className="body-link stretched-link">
                   Introduction to Baking Cakes
                 </NavLink>
               </h5>
@@ -225,7 +225,7 @@ const CoursesExplore = () => {
             <Card.Img src="/img/product/small/product-7.webp" className="card-img-top sh-22" alt="card image" />
             <Card.Body>
               <h5 className="heading mb-0">
-                <NavLink to="/courses/detail" className="body-link stretched-link">
+                <NavLink to="/app/courses/detail" className="body-link stretched-link">
                   Apple Cake Recipe for Starters
                 </NavLink>
               </h5>
@@ -254,7 +254,7 @@ const CoursesExplore = () => {
             <Card.Img src="/img/product/small/product-8.webp" className="card-img-top sh-22" alt="card image" />
             <Card.Body>
               <h5 className="heading mb-0">
-                <NavLink to="/courses/detail" className="body-link stretched-link">
+                <NavLink to="/app/courses/detail" className="body-link stretched-link">
                   Advanced Sandwich Making Techniques
                 </NavLink>
               </h5>
@@ -359,7 +359,7 @@ const CoursesExplore = () => {
             <div className="card-img-overlay d-flex flex-column justify-content-between bg-transparent">
               <div className="cta-3 mb-3 text-black w-75 w-md-50">Introduction to Sandwich Making</div>
               <div>
-                <NavLink to="/courses/detail" className="btn btn-icon btn-icon-start btn-outline-primary stretched-link">
+                <NavLink to="/app/courses/detail" className="btn btn-icon btn-icon-start btn-outline-primary stretched-link">
                   <CsLineIcons icon="chevron-right" /> <span>View</span>
                 </NavLink>
               </div>
@@ -375,7 +375,7 @@ const CoursesExplore = () => {
             <div className="card-img-overlay d-flex flex-column justify-content-between bg-transparent">
               <div className="cta-3 mb-3 text-black w-75 w-md-50">Effects of Natural Ingredients</div>
               <div>
-                <NavLink to="/courses/detail" className="btn btn-icon btn-icon-start btn-outline-primary stretched-link">
+                <NavLink to="/app/courses/detail" className="btn btn-icon btn-icon-start btn-outline-primary stretched-link">
                   <CsLineIcons icon="chevron-right" /> <span>View</span>
                 </NavLink>
               </div>

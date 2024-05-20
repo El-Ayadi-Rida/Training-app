@@ -14,11 +14,18 @@ import { jwtDecode } from 'jwt-decode';
 // import { setCurrentUser } from 'auth/authSlice';
 
 const Login = () => {
+  const [isloading , setIsLoading] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const title = 'Login';
   const description = 'Login Page';
   const [authTokens, setAuthTokens] = useState({});
+  const { currentUser, isLogin } = useSelector((state) => state.auth);
+  useEffect(()=>{
+     if(currentUser){
+       history.push("/app");
+     }
+  },[currentUser])
 
   // const { currentUser, isLogin } = useSelector((state) => state.auth);
   // useEffect(() => {
@@ -39,8 +46,7 @@ const Login = () => {
     return {};
   };
   const initialValues = { email: '', password: '' };
-  const { currentUser, isLogin } = useSelector((state) => state.auth);
-  console.log(currentUser);
+  console.log(isloading);
   // const onSubmit = async (values) => {
   //   console.log('submit form', values);
   //   const response = await fetch('https://localhost:7202/api/User/Login', {
@@ -62,13 +68,15 @@ const Login = () => {
   const onSubmit = async (values) => {
     try {
       // const response = await axios.post('http://localhost:8080/api/auth/signin', values);
+      setIsLoading(true);
       const response = await axios.post('https://api.escuelajs.co/api/v1/auth/login', values);
       console.log(response.data.access_token);
       const accessToken = response.data.access_token;
       const refreshToken = response.data.refresh_token;
-
+      if(accessToken){
+        setIsLoading(false);
+      }
       // Store { accessToken, refreshToken } in localStorage; 
-
       localStorage.setItem('token', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
 
@@ -140,7 +148,7 @@ const Login = () => {
               </NavLink>
               {errors.password && touched.password && <div className="d-block invalid-tooltip">{errors.password}</div>}
             </div>
-            <Button size="lg" type="submit">
+            <Button style={{pointerEvents:`${isloading ? 'none':'auto'}` , opacity:`${isloading ? '0.4':'1'}`}} size="lg" type="submit">
               Login
             </Button>
           </form>
