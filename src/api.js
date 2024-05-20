@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: 'https://api.escuelajs.co/api/v1',
+    baseURL: 'http://localhost:8080/api/v1',
   });
 
   // Add a request interceptor
