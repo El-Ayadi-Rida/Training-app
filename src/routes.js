@@ -13,10 +13,11 @@ const courses = {
   list: lazy(() => import('views/courses/CoursesList')),
   detail: lazy(() => import('views/courses/CoursesDetail')),
 };
-const programs = {
-  explore: lazy(() => import('views/products/list/ProductsList')),
-  detail: lazy(() => import('views/products/detail/ProductsDetail')),
+
+const contact = {
+  list: lazy(() => import('views/contacts/Contacts'))
 };
+
 const quiz = {
   list: lazy(() => import('views/quiz/QuizList')),
   detail: lazy(() => import('views/quiz/QuizDetail')),
@@ -41,15 +42,14 @@ const appRoot = DEFAULT_PATHS.APP.endsWith('/') ? DEFAULT_PATHS.APP.slice(1, DEF
 
 const adminRoutes = [
   {
-    path: `${appRoot}/courses`,
-    label: 'menu.courses',
-    icon: 'online-class',
+    path: `${appRoot}/misc`,
+    label: 'menu.misc',
+    icon: 'layout-5',
     exact: true,
     redirect: true,
-    to: `${appRoot}/courses/explore`,
+    to: `${appRoot}/misc/player`,
     subs: [
-      { path: '/explore', label: 'menu.explore', component: programs.explore },
-      { path: '/detail/:programId', label: '', component: programs.detail },
+      { path: '/player', label: 'menu.player', component: contact.list }
     ],
     roles: [USER_ROLE.Admin]
   }
@@ -73,20 +73,7 @@ const trainerRoutes = [
 ];
 
 const learnerRoutes = [
-  {
-    path: `${appRoot}/misc`,
-    label: 'menu.misc',
-    icon: 'layout-5',
-    exact: true,
-    redirect: true,
-    to: `${appRoot}/misc/player`,
-    subs: [
-      { path: '/player', label: 'menu.player', component: misc.player },
-      { path: '/material', label: 'menu.material', component: misc.material },
-      { path: '/syllabus', label: 'menu.syllabus', component: misc.syllabus },
-    ],
-    roles: [USER_ROLE.Admin]
-  }
+
 ];
 
 const sharedRoutes = [

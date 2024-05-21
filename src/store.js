@@ -10,10 +10,10 @@ import settingsReducer from 'settings/settingsSlice';
 import layoutReducer from 'layout/layoutSlice';
 import langReducer from 'lang/langSlice';
 import authReducer from 'auth/authSlice';
-import programReducer from 'features/program/programSlice';
 import menuReducer from 'layout/nav/main-menu/menuSlice';
 import notificationReducer from 'layout/nav/notifications/notificationSlice';
 import scrollspyReducer from 'components/scrollspy/scrollspySlice';
+import contactsReducer from 'views/contacts/contactsSlice';
 
 // import persist key
 import { REDUX_PERSIST_KEY } from 'config.js';
@@ -34,7 +34,7 @@ const persistedReducer = persistReducer(
     menu: menuReducer,
     notification: notificationReducer,
     scrollspy: scrollspyReducer,
-    program: programReducer,
+    contacts:contactsReducer
   })
 );
 const store = configureStore({
