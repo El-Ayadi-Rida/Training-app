@@ -51,10 +51,9 @@ const adminRoutes = [
     subs: [
       { path: '/player', label: 'menu.player', component: contact.list }
     ],
-    roles: [USER_ROLE.Admin]
-  }
+    roles: [USER_ROLE.Admin],
+  },
 ];
-
 
 const trainerRoutes = [
   {
@@ -66,10 +65,10 @@ const trainerRoutes = [
     to: `${appRoot}/paths/list`,
     subs: [
       { path: '/list', label: 'menu.list', component: paths.list },
-      { path: '/detail', label: 'menu.detail', component: paths.detail },
+      { path: '/detail', label: '', component: paths.detail },
     ],
-    roles: [USER_ROLE.Trainer]
-  }
+    roles: [USER_ROLE.Trainer],
+  },
 ];
 
 const learnerRoutes = [
@@ -88,7 +87,7 @@ const sharedRoutes = [
     exact: true,
     redirect: true,
     to: `${appRoot}/dashboards/elearning`,
-    roles: [USER_ROLE.Admin, USER_ROLE.Trainer ,USER_ROLE.Learner] 
+    roles: [USER_ROLE.Admin, USER_ROLE.Trainer, USER_ROLE.Learner],
   },
   {
     path: `${appRoot}/dashboards`,
@@ -101,8 +100,8 @@ const sharedRoutes = [
       { path: '/elearning', label: 'menu.elearning', component: dashboards.elearning },
       { path: '/school', label: 'menu.school', component: dashboards.school },
     ],
-    roles: [USER_ROLE.Admin , USER_ROLE.Learner , USER_ROLE.Trainer]
-  }
+    roles: [USER_ROLE.Admin, USER_ROLE.Learner, USER_ROLE.Trainer],
+  },
 ];
 
 const routesAndMenuItems = {
@@ -116,6 +115,5 @@ const routesAndMenuItems = {
 
   ],
 };
-
 
 export default routesAndMenuItems;
