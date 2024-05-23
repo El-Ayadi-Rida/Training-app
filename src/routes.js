@@ -14,6 +14,11 @@ const courses = {
   detail: lazy(() => import('views/courses/CoursesDetail')),
 };
 
+const tasks = {
+  explore: lazy(() => import('views/tasks/Tasks')),
+  detail: lazy(()=> import('views/courses/CoursesDetail'))
+};
+
 const contact = {
   list: lazy(() => import('views/contacts/Contacts'))
 };
@@ -49,7 +54,8 @@ const adminRoutes = [
     redirect: true,
     to: `${appRoot}/misc/player`,
     subs: [
-      { path: '/player', label: 'menu.player', component: contact.list }
+      { path: '/player', label: 'menu.player', component: contact.list },
+      
     ],
     roles: [USER_ROLE.Admin],
   },
@@ -72,7 +78,19 @@ const trainerRoutes = [
 ];
 
 const learnerRoutes = [
-
+  {
+    path: `${appRoot}/courses`,
+    label: 'menu.courses',
+    icon: 'online-class',
+    exact: true,
+    redirect: true,
+    to: `${appRoot}/courses/explore`,
+    subs: [
+      { path: '/explore', label: 'menu.explore', component: tasks.explore },
+      { path: '/details/:idprogram', label: '', component: tasks.detail },
+    ],
+    roles: [USER_ROLE.Learner],
+  },
 ];
 
 const sharedRoutes = [

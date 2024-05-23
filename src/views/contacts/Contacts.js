@@ -4,7 +4,7 @@ import { Row, Col, Form } from 'react-bootstrap';
 import { useTable, useGlobalFilter, useSortBy, usePagination, useRowSelect, useRowState, useAsyncDebounce } from 'react-table';
 import HtmlHead from 'components/html-head/HtmlHead';
 import BreadcrumbList from 'components/breadcrumb-list/BreadcrumbList';
-import { createContact, deleteContact, getContacts, updateContact } from './contactsSlice';
+import { createContact, deleteContact, deleteContacts, getContacts, updateContact } from './contactsSlice';
 import ItemList from './components/ItemList';
 import ItemListPagination from './components/ItemListPagination';
 import AddEditModal from './components/AddEditModal';
@@ -27,39 +27,20 @@ const ContactsApp = () => {
   const columns = React.useMemo(() => {
     return [
       {
-        Header: 'Name',
-        accessor: 'name',
-        sortable: true,
-        headerClassName: 'ol-3 col-lg-4 d-flex flex-column mb-lg-0 pe-3 d-flex',
-        Cell: ({ cell }) => {
-          return (
-            <a
-              className="list-item-heading body"
-              href="#!"
-              onClick={(e) => {
-                e.preventDefault();
-              }}
-            >
-              {cell.value}
-            </a>
-          );
-        },
-      },
-      {
-        Header: 'Email',
-        accessor: 'email',
+        Header: 'Title',
+        accessor: 'title',
         sortable: true,
         headerClassName: 'col-3 col-lg-3 d-flex flex-column pe-1 justify-content-center',
       },
       {
-        Header: 'Phone',
-        accessor: 'phone',
+        Header: 'Fees',
+        accessor: 'fees',
         sortable: true,
         headerClassName: 'col-3 col-lg-3 d-flex flex-column pe-1 justify-content-center',
       },
       {
-        Header: 'Group',
-        accessor: 'group',
+        Header: 'Duration',
+        accessor: 'duration',
         sortable: true,
         headerClassName: 'col-3 col-lg-1 d-flex flex-column pe-1 justify-content-center',
       },
@@ -96,7 +77,7 @@ const ContactsApp = () => {
       autoResetPage: false,
       autoResetSortBy: false,
       pageCount,
-      initialState: { pageSize: 2, pageIndex: 0, sortBy: [{ id: 'id', desc: false }], hiddenColumns: ['id'] },
+      initialState: { pageSize: 7, pageIndex: 0, sortBy: [{ id: 'id', desc: false }], hiddenColumns: ['id'] },
     },
     useGlobalFilter,
     useSortBy,
@@ -117,10 +98,19 @@ const ContactsApp = () => {
   };
 
   const deleteItem = (items) => {
-    dispatch(deleteContact({ sortBy, pageSize, pageIndex, ids: items.map((x) => x.id) }));
+    if (items.length === 1) {
+      const itemId = items[0].id;
+      console.log(itemId);
+      // dispatch(deleteContact(itemId));
+    } else {
+      const itemIds = items.map((item) => item.id);
+      console.log(itemIds);
+      // dispatch(deleteContacts({itemIds}));
+    }
   };
 
   const searchItem = useAsyncDebounce((val) => {
+    
     setTerm(val || undefined);
   }, 200);
 
@@ -135,12 +125,11 @@ const ContactsApp = () => {
     };
   }, [loading]);
   
-  const {selectedFlatRows} = tableInstance;
-  console.log(selectedFlatRows);
   
   useEffect(() => {
     try {
       dispatch(getContacts({ term, sortBy:sortBy[0].id, pageSize, pageIndex }));
+      console.log(pageIndex);
     } catch (e) {
       // console.log('...error : ', e);
     }

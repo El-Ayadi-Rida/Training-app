@@ -5,7 +5,7 @@ const getuserFromToken = () => {
   const token = localStorage.getItem('token'); // or sessionStorage, depending on where you store your token
   if (token) {
     const decoded = jwtDecode(token);
-    const user = {...decoded , role:"admin"}
+    const user = {...decoded , role:"learner"}
     console.log(user);
     return user; // Make sure the payload contains the 'role' you set on the server side
   }

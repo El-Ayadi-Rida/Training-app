@@ -17,6 +17,7 @@ import contactsReducer from 'views/contacts/contactsSlice';
 
 // import persist key
 import { REDUX_PERSIST_KEY } from 'config.js';
+import tasksReducer from 'views/tasks/tasksSlice';
 
 const persistConfig = {
   key: REDUX_PERSIST_KEY,
@@ -34,7 +35,8 @@ const persistedReducer = persistReducer(
     menu: menuReducer,
     notification: notificationReducer,
     scrollspy: scrollspyReducer,
-    contacts:contactsReducer
+    contacts:contactsReducer,
+    tasks: tasksReducer,
   })
 );
 const store = configureStore({

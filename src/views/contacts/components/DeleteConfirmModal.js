@@ -7,6 +7,7 @@ const DeleteConfirmModal = ({ tableInstance, deleteItem }) => {
     setIsOpenAddEditModal(false);
     setIsOpenDeleteConfirmModal(false);
     deleteItem(selectedFlatRows.map((x) => x.original));
+    
   };
 
   return (
@@ -15,7 +16,7 @@ const DeleteConfirmModal = ({ tableInstance, deleteItem }) => {
         <Modal.Title>Confirmation</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <span className="fw-bold">{selectedFlatRows.length === 1 ? selectedFlatRows[0].original.name : `${selectedFlatRows.length} items`}</span>{' '}
+        <span className="fw-bold">{selectedFlatRows.length === 1 ? selectedFlatRows[0].original.title : `${selectedFlatRows.length} items`}</span>{' '}
         <span>will be deleted. Are you sure?</span>
       </Modal.Body>
       <Modal.Footer>

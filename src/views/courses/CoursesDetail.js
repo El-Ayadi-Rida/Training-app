@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col, Card, Button, ProgressBar } from 'react-bootstrap';
 import Plyr from 'plyr-react';
 import Rating from 'react-rating';
 import HtmlHead from 'components/html-head/HtmlHead';
 import BreadcrumbList from 'components/breadcrumb-list/BreadcrumbList';
 import CsLineIcons from 'cs-line-icons/CsLineIcons';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTaskById } from 'views/tasks/tasksSlice';
 
 const PurePlyr = React.memo(() => {
   const videoSrc = {
@@ -19,12 +22,33 @@ const PurePlyr = React.memo(() => {
 const CoursesDetail = () => {
   const title = 'Bread Making Techniques';
   const description = 'Elearning Portal Course Detail Page';
+  const { id } = useParams(); // This assumes you're using React Router and the path is '/tasks/:id'
+  const dispatch = useDispatch();
+  const { loading , selectedTask } = useSelector((state) => state.tasks);
+  
 
   const breadcrumbs = [
-    { to: '', text: 'Home' },
-    { to: 'courses/explore', text: 'Courses' },
+    { to: '/', text: 'Home' },
+    { to: '/courses/explore', text: 'Courses' },
   ];
 
+  useEffect(() => {
+    if (loading) {
+      document.body.classList.add('spinner');
+    } else {
+      document.body.classList.remove('spinner');
+    }
+    return () => {
+      document.body.classList.remove('spinner');
+    };
+  }, [loading]);
+
+  useEffect(() => {
+    if (id) {
+        dispatch(getTaskById(id));
+    }
+}, [id, dispatch]);
+console.log(loading);
   return (
     <>
       <HtmlHead title={title} description={description} />
